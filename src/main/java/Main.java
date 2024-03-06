@@ -4,12 +4,18 @@ import java.util.Random;
 public class Main {
 
     Random random = new Random();
+
+    RedBlackTree<Integer> rb;
+    SplayTree<Integer> st;
+    Treap<Integer> tr;
+
     Integer min = Integer.MIN_VALUE;
     Integer max = Integer.MAX_VALUE;
     Integer[] sortedSmallArray = {-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     Integer[] reverseSortedSmallArray = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2};
-    Integer[] mixedSmallArray = {4, 2, 7, 1, 5, 8, 3, 9, 6};
-    Integer[] mixedWithDoubles = {3, 1, 5, 7, 3, 2, 3, 1, 8, 6, 9, 3, 2, 5, 1, 7};
+    Integer[] mixedSmallArray = {4, 2, 0, 7, 1, 11, 5, 8, 3, 10, 9, 6};
+    Integer[] mixedWithDoubles = {3, 1, 5, 7, 3, 2, 3, 1, 8, 6, 9, 3};
+    ArrayList<Integer> randomMixedMiddleSized = new ArrayList<>();
     ArrayList<Integer> randomExtremeValues = new ArrayList<>();
     ArrayList<Integer> randomBigArray = new ArrayList<>();
     ArrayList<Integer> randomBigArrayWithDoubles = new ArrayList<>();
@@ -19,7 +25,11 @@ public class Main {
     }
     private void populateRandomArrays(){
         ArrayList<Integer> used = new ArrayList<>();
-        for(int i=0; i<12345; i++){
+        for(int i=0; i<850; i++){
+            randomMixedMiddleSized.add(random.nextInt());
+        }
+
+        for(int i=0; i<12; i++){
             Integer difference = random.nextInt(1000);
             if(random.nextBoolean()){
                 randomExtremeValues.add(min-difference);
@@ -44,113 +54,119 @@ public class Main {
             }
             if(random.nextBoolean()){
                 randomBigArrayWithDoubles.add(used.get(i % used.size()));
+                i++;
             }
         }
 
 
     }
+    private void populateByDemand(Integer[] inputArray){
+        rb = new RedBlackTree<>();
+        st = new SplayTree<>();
+        tr = new Treap<>();
 
-    public void sortedSmallTest(){
-        RedBlackTree<Integer> rb = new RedBlackTree<>();
-        SplayTree<Integer> st = new SplayTree<>();
-        Treap<Integer> tr = new Treap<>();
-
-        for (Integer integer : sortedSmallArray) {
+        for (Integer integer : inputArray) {
             rb.insert(integer);
             st.insert(integer);
             tr.insert(integer);
         }
+    }
+    private void populateByDemand(ArrayList<Integer> inputArray){
+        rb = new RedBlackTree<>();
+        st = new SplayTree<>();
+        tr = new Treap<>();
+
+        for (Integer integer : inputArray) {
+            rb.insert(integer);
+            st.insert(integer);
+            tr.insert(integer);
+        }
+    }
+
+    public void sortedSmallTest(){
+        populateByDemand(sortedSmallArray);
         System.out.println("Small sorted list rotation count");
         System.out.println("    RedBlack: " + rb.getCounter());
         System.out.println("    SplayTree: " + st.getCounter());
         System.out.println("    Treap: " + tr.getCounter());
     }
     public void reverseSortedSmallTest(){
-        RedBlackTree<Integer> rb = new RedBlackTree<>();
-        SplayTree<Integer> st = new SplayTree<>();
-        Treap<Integer> tr = new Treap<>();
-
-        for (Integer integer : reverseSortedSmallArray) {
-            rb.insert(integer);
-            st.insert(integer);
-            tr.insert(integer);
-        }
+        populateByDemand(reverseSortedSmallArray);
         System.out.println("Small reverse sorted list rotation count");
         System.out.println("    RedBlack: " + rb.getCounter());
         System.out.println("    SplayTree: " + st.getCounter());
         System.out.println("    Treap: " + tr.getCounter());
     }
     public void mixedSmallTest(){
-        RedBlackTree<Integer> rb = new RedBlackTree<>();
-        SplayTree<Integer> st = new SplayTree<>();
-        Treap<Integer> tr = new Treap<>();
-
-        for (Integer integer : mixedSmallArray) {
-            rb.insert(integer);
-            st.insert(integer);
-            tr.insert(integer);
-        }
+        populateByDemand(mixedSmallArray);
         System.out.println("Small mixed list rotation count");
         System.out.println("    RedBlack: " + rb.getCounter());
         System.out.println("    SplayTree: " + st.getCounter());
         System.out.println("    Treap: " + tr.getCounter());
     }
     public void mixedSmallDoublesTest(){
-        RedBlackTree<Integer> rb = new RedBlackTree<>();
-        SplayTree<Integer> st = new SplayTree<>();
-        Treap<Integer> tr = new Treap<>();
-
-        for (Integer integer : mixedWithDoubles) {
-            rb.insert(integer);
-            st.insert(integer);
-            tr.insert(integer);
-        }
+        populateByDemand(mixedWithDoubles);
         System.out.println("Small mixed list with doubles rotation count");
         System.out.println("    RedBlack: " + rb.getCounter());
         System.out.println("    SplayTree: " + st.getCounter());
         System.out.println("    Treap: " + tr.getCounter());
     }
     public void randomExtremeTest(){
-        RedBlackTree<Integer> rb = new RedBlackTree<>();
-        SplayTree<Integer> st = new SplayTree<>();
-        Treap<Integer> tr = new Treap<>();
-
-        for (Integer integer : randomExtremeValues) {
-            rb.insert(integer);
-            st.insert(integer);
-            tr.insert(integer);
-        }
+        populateByDemand(randomExtremeValues);
         System.out.println("Random extreme values list rotation count");
         System.out.println("    RedBlack: " + rb.getCounter());
         System.out.println("    SplayTree: " + st.getCounter());
         System.out.println("    Treap: " + tr.getCounter());
     }
     public void randomBigSinglesTest(){
-        RedBlackTree<Integer> rb = new RedBlackTree<>();
-        SplayTree<Integer> st = new SplayTree<>();
-        Treap<Integer> tr = new Treap<>();
-
-        for (Integer integer : randomBigArray) {
-            rb.insert(integer);
-            st.insert(integer);
-            tr.insert(integer);
-        }
+        populateByDemand(randomBigArray);
         System.out.println("Big random single values list rotation count");
         System.out.println("    RedBlack: " + rb.getCounter());
         System.out.println("    SplayTree: " + st.getCounter());
         System.out.println("    Treap: " + tr.getCounter());
     }
     public void randomBigDoublesTest(){
-        RedBlackTree<Integer> rb = new RedBlackTree<>();
-        SplayTree<Integer> st = new SplayTree<>();
-        Treap<Integer> tr = new Treap<>();
+        populateByDemand(randomBigArrayWithDoubles);
+        System.out.println("Big random doubles values list rotation count");
+        System.out.println("    RedBlack: " + rb.getCounter());
+        System.out.println("    SplayTree: " + st.getCounter());
+        System.out.println("    Treap: " + tr.getCounter());
+    }
 
-        for (Integer integer : randomBigArrayWithDoubles) {
+    public void firstAddThenRemoveTest(){
+        populateByDemand(randomMixedMiddleSized);
+        do{
+            int index = random.nextInt(randomMixedMiddleSized.size());
+            st.remove(randomMixedMiddleSized.get(index));
+            randomMixedMiddleSized.remove(index);
+        }while(randomMixedMiddleSized.size()>0);
+        System.out.println("First add and then remove whole list rotation count - 850 elements");
+        System.out.println("    RedBlack: " + rb.getCounter());
+        System.out.println("    SplayTree: " + st.getCounter());
+        System.out.println("    Treap: " + tr.getCounter());
+    }
+
+    public void mixedAddAndRemoveTest(){
+        rb = new RedBlackTree<>();
+        st = new SplayTree<>();
+        tr = new Treap<>();
+
+        for(int i=0; i<=1700;i++){
+
+        }
+
+
+        for (Integer integer : randomMixedMiddleSized) {
             rb.insert(integer);
             st.insert(integer);
             tr.insert(integer);
         }
-        System.out.println("Big random doubles values list rotation count");
+        do{
+            int index = random.nextInt(randomMixedMiddleSized.size());
+            st.remove(randomMixedMiddleSized.get(index));
+            randomMixedMiddleSized.remove(index);
+        }while(randomMixedMiddleSized.size()>0);
+        System.out.println("First add and then remove whole list rotation count - ");
         System.out.println("    RedBlack: " + rb.getCounter());
         System.out.println("    SplayTree: " + st.getCounter());
         System.out.println("    Treap: " + tr.getCounter());
@@ -166,5 +182,8 @@ public class Main {
         main.randomExtremeTest();
         main.randomBigSinglesTest();
         main.randomBigDoublesTest();
+        main.firstAddThenRemoveTest();
+
+
     }
 }
