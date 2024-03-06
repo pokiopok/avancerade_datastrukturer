@@ -23,6 +23,7 @@ public class SplayTree<AnyType extends Comparable<? super AnyType>>
     /**
      * Construct the tree.
      */
+    private int counter;
     public SplayTree( )
     {
         nullNode = new BinaryNode<AnyType>( null );
@@ -234,23 +235,30 @@ public class SplayTree<AnyType extends Comparable<? super AnyType>>
      * Rotate binary tree node with left child.
      * For AVL trees, this is a single rotation for case 1.
      */
-    private static <AnyType> BinaryNode<AnyType> rotateWithLeftChild( BinaryNode<AnyType> k2 )
+
+    //removed static marker - figure out why it was there later
+//    private static <AnyType> BinaryNode<AnyType> rotateWithLeftChild( BinaryNode<AnyType> k2 )
+    private BinaryNode<AnyType> rotateWithLeftChild( BinaryNode<AnyType> k2 )
     {
         BinaryNode<AnyType> k1 = k2.left;
         k2.left = k1.right;
         k1.right = k2;
+        counter++;
         return k1;
     }
 
+    //removed static marker - figure out why it was there later
     /**
      * Rotate binary tree node with right child.
      * For AVL trees, this is a single rotation for case 4.
      */
-    private static <AnyType> BinaryNode<AnyType> rotateWithRightChild( BinaryNode<AnyType> k1 )
+//    private static <AnyType> BinaryNode<AnyType> rotateWithRightChild( BinaryNode<AnyType> k1 )
+    private BinaryNode<AnyType> rotateWithRightChild( BinaryNode<AnyType> k1 )
     {
         BinaryNode<AnyType> k2 = k1.right;
         k1.right = k2.left;
         k2.left = k1;
+        counter++;
         return k2;
     }
 
@@ -279,6 +287,9 @@ public class SplayTree<AnyType extends Comparable<? super AnyType>>
     private BinaryNode<AnyType> nullNode;
     
 
+    public int getCounter(){
+        return counter;
+    }
         // Test program; should print min and max and nothing else
     public static void main( String [ ] args )
     {

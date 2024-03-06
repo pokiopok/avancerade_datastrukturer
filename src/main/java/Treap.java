@@ -26,6 +26,8 @@ public class Treap<AnyType extends Comparable<? super AnyType>>
     /**
      * Construct the treap.
      */
+
+    private int counter;
     public Treap( )
     {
         nullNode = new TreapNode<>( null );
@@ -222,6 +224,7 @@ public class Treap<AnyType extends Comparable<? super AnyType>>
         TreapNode<AnyType> k1 = k2.left;
         k2.left = k1.right;
         k1.right = k2;
+        counter++;
         return k1;
     }
 
@@ -233,6 +236,7 @@ public class Treap<AnyType extends Comparable<? super AnyType>>
         TreapNode<AnyType> k2 = k1.right;
         k1.right = k2.left;
         k2.left = k1;
+        counter++;
         return k2;
     }
 
@@ -263,7 +267,10 @@ public class Treap<AnyType extends Comparable<? super AnyType>>
     
     private TreapNode<AnyType> root;
     private TreapNode<AnyType> nullNode;
- 
+
+    public int getCounter(){
+        return counter;
+    }
 
         // Test program
     public static void main( String [ ] args )

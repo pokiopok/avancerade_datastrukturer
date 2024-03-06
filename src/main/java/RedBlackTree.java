@@ -25,6 +25,8 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
     /**
      * Construct the tree.
      */
+
+    int counter;
     public RedBlackTree( )
     {
         nullNode = new RedBlackNode<>( null );
@@ -367,6 +369,7 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
         RedBlackNode<AnyType> k1 = k2.left;
         k2.left = k1.right;
         k1.right = k2;
+        counter++;
         return k1;
     }
 
@@ -378,6 +381,7 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
         RedBlackNode<AnyType> k2 = k1.right;
         k1.right = k2.left;
         k2.left = k1;
+        counter++;
         return k2;
     }
 
@@ -415,8 +419,11 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
     private RedBlackNode<AnyType> grand;
     private RedBlackNode<AnyType> great;
 
+    public int getCounter() {
+        return counter;
+    }
 
-        // Test program
+    // Test program
     public static void main( String [ ] args )
     {
         RedBlackTree<Integer> t = new RedBlackTree<>( );
