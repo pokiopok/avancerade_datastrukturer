@@ -14,6 +14,8 @@
 // ******************ERRORS********************************
 // Throws UnderflowException as appropriate
 
+import java.util.Random;
+
 /**
  * Implements a treap.
  * Note that all "matching" is based on the compareTo method.
@@ -247,7 +249,7 @@ public class Treap<AnyType extends Comparable<? super AnyType>>
             element  = theElement;
             left     = lt;
             right    = rt;
-            priority = randomObj.randomInt( );
+            priority = randomObj.nextInt();
         }
 
             // Friendly data; accessible by other package routines
