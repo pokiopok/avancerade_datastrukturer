@@ -238,22 +238,15 @@ public class Main {
     }
     //Testar contains för random data
     public void containsRandomTest() {
-        rb = new RedBlackTree<>();
-        st = new SplayTree<>();
-        tr = new Treap<>();
-        Integer[] array = new Integer[baseCaseRandomInput.size()];
-        for(int i = 0; i < baseCaseRandomInput.size(); i++) {
-            array[i] = baseCaseRandomInput.get(i);
-        }
-        populateDataStructuresWithGivenInput(array);
+
+        populateDataStructuresWithGivenInput(baseCaseRandomInput);
         clearCounters();
-        Random rnd = new Random();
-        for(int i = 0; i < 100; i++) {
-            Integer searchedFor = rnd.nextInt(0, array.length - 1);
-            Integer index = array[searchedFor];
-            rb.contains(index);
-            st.contains(index);
-            tr.contains(index);
+        for(int i = 0; i < 1000; i++) {
+            Integer index = random.nextInt(0, baseCaseRandomInput.size() - 1);
+
+            rb.contains(baseCaseRandomInput.get(index));
+            st.contains(baseCaseRandomInput.get(index));
+            tr.contains(baseCaseRandomInput.get(index));
         }
         System.out.println("Testing contains method for random searches - rotation count 100 calls");
         printRotationCounters();
@@ -261,16 +254,10 @@ public class Main {
     //behöver vi lägga till en searchdepth för att visa på styrkorna/svagheterna?
     //osäker på hur denna kan se ut
     public void simulatedMixedUsageTest() {
-        rb = new RedBlackTree<>();
-        st = new SplayTree<>();
-        tr = new Treap<>();
-        Integer[] array = new Integer[baseCaseRandomInput.size()];
-        for(int i = 0; i < baseCaseRandomInput.size(); i++) {
-            array[i] = baseCaseRandomInput.get(i);
-        }
-        populateDataStructuresWithGivenInput(array);
+        currentElements = new ArrayList<>(baseCaseRandomInput);
+        populateDataStructuresWithGivenInput(currentElements);
         clearCounters();
-        Random rnd = new Random();
+
         //leta efter min, max, contains, samt insertions
         for(int i = 0; i < 1000; i++) {
             if(i % 12 == 0) {
@@ -284,16 +271,16 @@ public class Main {
                 tr.findMin();
             }
             if(i % 12 == 3 || i % 12 == 9) {
-                Integer newInt = rnd.nextInt();
+                Integer newInt = random.nextInt();
                 rb.insert(newInt);
                 st.insert(newInt);
                 tr.insert(newInt);
             }
-            //brist att den inte söker på nyligen ditlagda, ändra till Arraylist?
-            Integer searchedFor = rnd.nextInt(0,array.length - 1);
-            rb.contains(searchedFor);
-            st.contains(searchedFor);
-            tr.contains(searchedFor);
+
+            Integer index = random.nextInt(0,currentElements.size() - 1);
+            rb.contains(currentElements.get(index));
+            st.contains(currentElements.get(index));
+            tr.contains(currentElements.get(index));
         }
         System.out.println("Testing simulated searches and insertions - rotation count 1000 calls");
         printRotationCounters();
