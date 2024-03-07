@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Random;
 
 public class Main {
@@ -174,7 +176,7 @@ public class Main {
     }
 
     //user pattern tests
-    public void firstAddThenRemoveTest(){
+    public void removeAllRandomOrderTest(){
         populateDataStructuresWithGivenInput(baseCaseRandomInput);
         clearCounters();
         //copy of input to keep track of current elements
@@ -186,7 +188,23 @@ public class Main {
             tr.remove(currentElements.get(index));
             currentElements.remove(index);
         }while(currentElements.size()>0);
-        System.out.println("Remove all - rotation count - 850 elements");
+        System.out.println("Remove all unsorted- rotation count - 850 elements");
+        printRotationCounters();
+    }
+
+    public void removeAllinOrderTest(){
+        populateDataStructuresWithGivenInput(baseCaseRandomInput);
+        clearCounters();
+        //copy of input to keep track of current elements
+        currentElements = new ArrayList<>(baseCaseRandomInput);
+        //sort in order to remove in order
+        Collections.sort(currentElements);
+        for(Integer i : currentElements){
+//            rb.remove(i);
+            st.remove(i);
+            tr.remove(i);
+        }
+        System.out.println("Remove all sorted- rotation count - 850 elements");
         printRotationCounters();
     }
 
@@ -303,7 +321,8 @@ public class Main {
         main.baseCaseRandomTest();
 
         //user pattern tests
-        main.firstAddThenRemoveTest();
+        main.removeAllRandomOrderTest();
+        main.removeAllinOrderTest();
         main.mixedAddAndRemoveTest();
         main.containsRandomTest(); //contains, random
         main.simulatedMixedUsageTest(); //findMin, findMax, contains, insert, random
