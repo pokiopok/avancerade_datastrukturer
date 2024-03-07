@@ -58,6 +58,14 @@ public class Main {
             baseCaseRandomInput.add(random.nextInt());
         }
 
+        for(int i=-2; i<12345-2; i++){
+            sortedBigInput.add(i);
+        }
+
+        for(int i=12345-3; i>-3; i--){
+            reverseSortedBigInput.add(i);
+        }
+
         for(int i=0; i<12345; i++){
             Integer difference = random.nextInt(1000);
             if(random.nextBoolean()){
@@ -133,12 +141,21 @@ public class Main {
         System.out.println("Small unsorted input with doubles - rotation count");
         printRotationCounters();
     }
-    public void unsortedExtremeTest(){
+    public void unsortedExtremeValuesTest(){
         populateDataStructuresWithGivenInput(unsortedExtremeValuesBigInput);
         System.out.println("Unsorted extreme values input, big - rotation count");
         printRotationCounters();
     }
-
+    public void sortedBigTest(){
+        populateDataStructuresWithGivenInput(sortedBigInput);
+        System.out.println("Sorted values input, big - rotation count");
+        printRotationCounters();
+    }
+    public void reverseSortedBigTest(){
+        populateDataStructuresWithGivenInput(reverseSortedBigInput);
+        System.out.println("Reverse sorted values input, big - rotation count");
+        printRotationCounters();
+    }
     public void unsortedBigSingleValuesTest(){
         populateDataStructuresWithGivenInput(unsortedBigSingleValuesInput);
         System.out.println("Unsorted single values input, big - rotation count");
@@ -207,13 +224,17 @@ public class Main {
         Main main = new Main();
 
         //different input rotation measurement tests
+        //small input
         main.sortedSmallTest();
         main.reverseSortedSmallTest();
         main.unsortedSmallTest();
         main.unsortedSmallWithDoublesTest();
-        main.unsortedExtremeTest();
+        //big input
+        main.sortedBigTest();
+        main.reverseSortedBigTest();
         main.unsortedBigSingleValuesTest();
         main.unsortedBigDoubleValuesTest();
+        main.unsortedExtremeValuesTest();
 
         //base case input, used for pattern tests
         main.baseCaseRandomTest();
