@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class Main {
@@ -171,6 +172,19 @@ public class Main {
         System.out.println("    SplayTree: " + st.getCounter());
         System.out.println("    Treap: " + tr.getCounter());
     }
+
+    //Lägg till metod mixed simulated usage
+    public void mixedSimulatedUsageTest() {
+        //basic population
+
+        //contains, findmin, findmax, insert, (remove)
+    }
+
+    //vi testar att söka
+    public void containsTest() {
+        //testar contains
+    }
+
 
     public static void main(String[] args){
         Main main = new Main();

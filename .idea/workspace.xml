@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a5b2d58-3eed-46e4-b95c-c8fa0a3b3cbc" name="Changes" comment="Uppdaterade basic testcases för SplayTree" />
+    <list default="true" id="4a5b2d58-3eed-46e4-b95c-c8fa0a3b3cbc" name="Changes" comment="commit före en pull">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Treap.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Treap.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,16 +47,16 @@
     "last_opened_file_path": "C:/Users/luhhd/IdeaProjects/avancerade_datastrukturer"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.RedBlackTree">
-    <configuration name="RedBlackTree" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="RedBlackTree" />
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="avancerade_datastrukturer" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Treap" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Treap" />
+    <configuration name="RedBlackTree" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="RedBlackTree" />
       <module name="avancerade_datastrukturer" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -88,11 +93,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.RedBlackTree" />
         <item itemvalue="JUnit.SplayTreeTest.containsSplTTest" />
         <item itemvalue="JUnit.SplayTreeTest" />
         <item itemvalue="JUnit.SplayTreeTest.insertSPLTTest" />
-        <item itemvalue="Application.Treap" />
       </list>
     </recent_temporary>
   </component>
@@ -117,7 +122,13 @@
       <option name="presentableId" value="LOCAL−00002" />
       <updated>1709735564130</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL−00003" summary="commit före en pull">
+      <created>1709817319577</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1709817319577</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -133,6 +144,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Uppdaterade basic testcases för SplayTree" />
-    <option name="LAST_COMMIT_MESSAGE" value="Uppdaterade basic testcases för SplayTree" />
+    <MESSAGE value="commit före en pull" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit före en pull" />
   </component>
 </project>
