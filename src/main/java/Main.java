@@ -10,8 +10,8 @@ public class Main {
     SplayTree<Integer> st;
     Treap<Integer> tr;
 
-        //Array that holds "used" values
-    ArrayList<Integer> used;
+        //Array that holds "current" values
+    ArrayList<Integer> currentElements;
 
     Integer min = Integer.MIN_VALUE;
     Integer max = Integer.MAX_VALUE;
@@ -89,7 +89,7 @@ public class Main {
             }
         }
     }
-    private void populateDataStructureWithGivenInput(Integer[] inputArray){
+    private void populateDataStructuresWithGivenInput(Integer[] inputArray){
         rb = new RedBlackTree<>();
         st = new SplayTree<>();
         tr = new Treap<>();
@@ -100,7 +100,7 @@ public class Main {
             tr.insert(integer);
         }
     }
-    private void populateDataStructureWithGivenInput(ArrayList<Integer> inputArray){
+    private void populateDataStructuresWithGivenInput(ArrayList<Integer> inputArray){
         rb = new RedBlackTree<>();
         st = new SplayTree<>();
         tr = new Treap<>();
@@ -114,58 +114,62 @@ public class Main {
 
     //Input insertion tests
     public void sortedSmallTest(){
-        populateDataStructureWithGivenInput(sortedSmallInput);
+        populateDataStructuresWithGivenInput(sortedSmallInput);
         System.out.println("Small sorted input - rotation count");
         printRotationCounters();
     }
     public void reverseSortedSmallTest(){
-        populateDataStructureWithGivenInput(reverseSortedSmallInput);
+        populateDataStructuresWithGivenInput(reverseSortedSmallInput);
         System.out.println("Small reverse sorted input - rotation count");
         printRotationCounters();
     }
     public void unsortedSmallTest(){
-        populateDataStructureWithGivenInput(unsortedSmallInput);
+        populateDataStructuresWithGivenInput(unsortedSmallInput);
         System.out.println("Small unsorted input - rotation count");
         printRotationCounters();
     }
     public void unsortedSmallWithDoublesTest(){
-        populateDataStructureWithGivenInput(unsortedWithDoubleValuesSmallInput);
+        populateDataStructuresWithGivenInput(unsortedWithDoubleValuesSmallInput);
         System.out.println("Small unsorted input with doubles - rotation count");
         printRotationCounters();
     }
     public void unsortedExtremeTest(){
-        populateDataStructureWithGivenInput(unsortedExtremeValuesBigInput);
+        populateDataStructuresWithGivenInput(unsortedExtremeValuesBigInput);
         System.out.println("Unsorted extreme values input, big - rotation count");
         printRotationCounters();
     }
 
     public void unsortedBigSingleValuesTest(){
-        populateDataStructureWithGivenInput(unsortedBigSingleValuesInput);
+        populateDataStructuresWithGivenInput(unsortedBigSingleValuesInput);
         System.out.println("Unsorted single values input, big - rotation count");
         printRotationCounters();
     }
     public void unsortedBigDoubleValuesTest(){
-        populateDataStructureWithGivenInput(unsortedBigDoubleValuesInput);
+        populateDataStructuresWithGivenInput(unsortedBigDoubleValuesInput);
         System.out.println("Unsorted double values input, big - rotation count");
         printRotationCounters();
     }
 
     public void baseCaseRandomTest(){
-        populateDataStructureWithGivenInput(baseCaseRandomInput);
+        populateDataStructuresWithGivenInput(baseCaseRandomInput);
         System.out.println("Base case with random input - rotation count");
         printRotationCounters();
     }
 
     //user pattern tests
     public void firstAddThenRemoveTest(){
-        populateDataStructureWithGivenInput(baseCaseRandomInput);
-        ArrayList<Integer> copy = new ArrayList<>(baseCaseRandomInput);
+        populateDataStructuresWithGivenInput(baseCaseRandomInput);
+        clearCounters();
+        //copy of input to keep track of current elements
+        currentElements = new ArrayList<>(baseCaseRandomInput);
         do{
-            int index = random.nextInt(copy.size());
-            st.remove(copy.get(index));
-            copy.remove(index);
-        }while(copy.size()>0);
-        System.out.println("First add and then remove whole list rotation count - 850 elements");
+            int index = random.nextInt(currentElements.size());
+//            rb.remove(currentElements.get(index));
+            st.remove(currentElements.get(index));
+            tr.remove(currentElements.get(index));
+            currentElements.remove(index);
+        }while(currentElements.size()>0);
+        System.out.println("Remove all - rotation count - 850 elements");
         printRotationCounters();
     }
 
@@ -173,40 +177,28 @@ public class Main {
         rb = new RedBlackTree<>();
         st = new SplayTree<>();
         tr = new Treap<>();
-        ArrayList<Integer> values = new ArrayList<>();
+        currentElements = new ArrayList<>();
         Integer temp;
 
-        for(int i=0; i<=120;){
+        for(int i=0; i<=850;){
             for(int j=0; j<6;j++){
                 temp = random.nextInt();
-                values.add(temp);
+                currentElements.add(temp);
 //                rb.insert(temp);
                 st.insert(temp);
                 tr.insert(temp);
                 i++;
             }
             for(int k=0; k<4; k++){
-                temp = values.get(random.nextInt(values.size()-1));
-                values.remove(temp);
+                temp = currentElements.get(random.nextInt(currentElements.size()-1));
+                currentElements.remove(temp);
  //               rb.remove(temp);
                 st.remove(temp);
                 tr.remove(temp);
                 i++;
             }
         }
-
-        ArrayList<Integer> copy = new ArrayList<>(baseCaseRandomInput);
-        for (Integer integer : copy) {
-            rb.insert(integer);
-            st.insert(integer);
-            tr.insert(integer);
-        }
-        do{
-            int index = random.nextInt(copy.size());
-            st.remove(copy.get(index));
-            copy.remove(index);
-        }while(copy.size()>0);
-        System.out.println("First add and then remove whole list rotation count - ");
+        System.out.println("Alternating add and then remove, - rotation count - 850 method calls");
         printRotationCounters();
     }
 
