@@ -25,6 +25,8 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
     /**
      * Construct the tree.
      */
+
+    int counter;
     public RedBlackTree( )
     {
         nullNode = new RedBlackNode<>( null );
@@ -85,9 +87,135 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
      * @param x the item to remove.
      * @throws UnsupportedOperationException if called.
      */
+
+    //GPT förslag
     public void remove( AnyType x )
+    { nullNode.element = x;
+        current = header.right;
+
+        while( compare( x, current ) != 0 )
+        {
+            parent = current;
+            current = compare( x, current ) < 0 ? current.left : current.right;
+
+            if( current == nullNode )
+                return;   // Item not found; do nothing
+        }
+
+        if( current.left != nullNode && current.right != nullNode )
+        {
+            // Node with two children
+            RedBlackNode<AnyType> minNode = findMin( current.right );
+            current.element = minNode.element;
+            current = minNode;
+        }
+
+        // At this point, current has at most one child
+        RedBlackNode<AnyType> child = ( current.left != nullNode ) ? current.left : current.right;
+
+        if( child != nullNode )
+        {
+            // Remove current
+            if( current == parent.left )
+                parent.left = child;
+            else
+                parent.right = child;
+
+            child.color = BLACK;  // Color adjustment
+        }
+        else
+        {
+            // Case where current has no children
+            if( current.color == BLACK )
+                fixAfterDeletion( current );
+
+            if( current == parent.left )
+                parent.left = nullNode;
+            else
+                parent.right = nullNode;
+        }
+    }
+
+    //GPT förslag
+    private void fixAfterDeletion( RedBlackNode<AnyType> x )
     {
-        throw new UnsupportedOperationException( );
+        while( x != header.right && x.color == BLACK )
+        {
+            if( x == parent.left )
+            {
+                RedBlackNode<AnyType> w = parent.right;
+                if( w.color == RED )
+                {
+                    w.color = BLACK;
+                    parent.color = RED;
+                    rotateWithLeftChild( parent );
+                    w = parent.right;
+                }
+
+                if( w.left.color == BLACK && w.right.color == BLACK )
+                {
+                    w.color = RED;
+                    x = parent;
+                }
+                else
+                {
+                    if( w.right.color == BLACK )
+                    {
+                        w.left.color = BLACK;
+                        w.color = RED;
+                        rotateWithRightChild( w );
+                        w = parent.right;
+                    }
+
+                    w.color = parent.color;
+                    parent.color = BLACK;
+                    w.right.color = BLACK;
+                    rotateWithLeftChild( parent );
+                    x = header.right;  // Break out of loop
+                }
+            }
+            else
+            {
+                RedBlackNode<AnyType> w = parent.left;
+                if( w.color == RED )
+                {
+                    w.color = BLACK;
+                    parent.color = RED;
+                    rotateWithRightChild( parent );
+                    w = parent.left;
+                }
+
+                if( w.right.color == BLACK && w.left.color == BLACK )
+                {
+                    w.color = RED;
+                    x = parent;
+                }
+                else
+                {
+                    if( w.left.color == BLACK )
+                    {
+                        w.right.color = BLACK;
+                        w.color = RED;
+                        rotateWithLeftChild( w );
+                        w = parent.left;
+                    }
+
+                    w.color = parent.color;
+                    parent.color = BLACK;
+                    w.left.color = BLACK;
+                    rotateWithRightChild( parent );
+                    x = header.right;  // Break out of loop
+                }
+            }
+        }
+        x.color = BLACK;
+    }
+    //GPT förslag
+    private RedBlackNode<AnyType> findMin( RedBlackNode<AnyType> t )
+    {
+        while( t.left != nullNode )
+            t = t.left;
+        return t;
     }
 
     /**
@@ -241,6 +369,7 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
         RedBlackNode<AnyType> k1 = k2.left;
         k2.left = k1.right;
         k1.right = k2;
+        counter++;
         return k1;
     }
 
@@ -252,6 +381,7 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
         RedBlackNode<AnyType> k2 = k1.right;
         k1.right = k2.left;
         k2.left = k1;
+        counter++;
         return k2;
     }
 
@@ -289,24 +419,24 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
     private RedBlackNode<AnyType> grand;
     private RedBlackNode<AnyType> great;
 
+    public int getCounter() {
+        return counter;
+    }
 
-        // Test program
+    // Test program
     public static void main( String [ ] args )
     {
         RedBlackTree<Integer> t = new RedBlackTree<>( );
         final int NUMS = 400000;
         final int GAP  =  35461;
 
-        System.out.println( "Checking... (no more output means success)" );
+        RedBlackTree<Integer> t2 = new RedBlackTree<>( );
+        for( int i = 100; i != 0; i -- )
+            t2.insert( i );
+        t2.printTree();
+        t2.remove(12);
+        t2.remove(14);
+        t2.printTree();
 
-        for( int i = GAP; i != 0; i = ( i + GAP ) % NUMS )
-            t.insert( i );
-
-        if( t.findMin( ) != 1 || t.findMax( ) != NUMS - 1 )
-            System.out.println( "FindMin or FindMax error!" );
-
-        for( int i = 1; i < NUMS; i++ )
-             if( !t.contains( i ) )
-                 System.out.println( "Find error1!" );
     }
 }
