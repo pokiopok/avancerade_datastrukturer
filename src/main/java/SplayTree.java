@@ -290,6 +290,7 @@ public class SplayTree<AnyType extends Comparable<? super AnyType>>
     public int getCounter(){
         return counter;
     }
+    public void setCounter(int i){ counter = i;}
         // Test program; should print min and max and nothing else
     public static void main( String [ ] args )
     {

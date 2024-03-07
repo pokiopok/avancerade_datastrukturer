@@ -88,6 +88,8 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
      * @throws UnsupportedOperationException if called.
      */
 
+
+
     //GPT förslag
     public void remove( AnyType x )
     { nullNode.element = x;
@@ -217,6 +219,8 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
             t = t.left;
         return t;
     }
+
+
 
     /**
      * Find the smallest item  the tree.
@@ -422,6 +426,7 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
     public int getCounter() {
         return counter;
     }
+    public void setCounter(int i){ counter = i;}
 
     // Test program
     public static void main( String [ ] args )

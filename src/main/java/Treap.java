@@ -271,6 +271,7 @@ public class Treap<AnyType extends Comparable<? super AnyType>>
     public int getCounter(){
         return counter;
     }
+    public void setCounter(int i){ counter = i;}
 
         // Test program
     public static void main( String [ ] args )
