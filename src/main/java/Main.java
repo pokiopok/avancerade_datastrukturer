@@ -59,6 +59,12 @@ public class Main {
         System.out.println("    SplayTree: " + this.st.getCounter());
         System.out.println("    Treap: " + this.tr.getCounter());
     }
+    private void printRotationCountersInRow(String dataSetDescription) {
+        System.out.printf(dataSetDescription + " " +  "%6d %6d %6d%n", rb.getCounter(), st.getCounter(), tr.getCounter());
+    }
+    private void printSearchCountersInRow(String dataSetDescription) {
+        System.out.printf(dataSetDescription + " " +  "%6d %6d %6d%n", rb.getSearchCounter(), st.getSearchCounter(), tr.getSearchCounter());
+    }
     private void printSearchCounters() {
         System.out.println("    RedBlack search: " + this.rb.getSearchCounter());
         System.out.println("    SplayTree search: " + this.st.getSearchCounter());
@@ -281,7 +287,27 @@ public class Main {
         System.out.println("Testing contains method for random searches - rotation count 1000 calls");
         printRotationCounters();
         printSearchCounters();
+
+//        printRotationCountersInRow("Random");
+//        printSearchCountersInRow("Random");
     }
+    public void alternatingFindMinFindMaxTest() {
+        populateDataStructuresWithGivenInput(baseCaseRandomInput);
+        clearCounters();
+        for(int i = 0; i < 1000; i++) {
+            rb.findMin();
+            rb.findMax();
+            st.findMin();
+            st.findMax();
+            tr.findMin();
+            tr.findMax();
+
+        }
+        System.out.println("Testing alternating min/max - rotation/search count 1000 calls");
+        printRotationCounters();
+        printSearchCounters();
+    }
+
     //behöver vi lägga till en searchdepth för att visa på styrkorna/svagheterna?
     //osäker på hur denna kan se ut
     public void simulatedMixedUsageTest() {
@@ -347,7 +373,7 @@ public class Main {
         main.mixedAddAndRemoveTest();
         main.containsRandomTest(); //contains, random
         main.simulatedMixedUsageTest(); //findMin, findMax, contains, insert, random
-
+        main.alternatingFindMinFindMaxTest(); //findMin, findMax
 
     }
 }
