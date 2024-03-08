@@ -77,7 +77,8 @@ public class Main {
         for(int i=0; i<1000; i++){
             baseCaseRandomInput.add(random.nextInt());
         }
-        for(int i=-2; i<12345-2; i++){
+
+        for(int i=0; i<1000; i++){
             baseCaseSortedInput.add(i);
         }
 
@@ -352,11 +353,8 @@ public class Main {
         System.out.println("Testing contains method for random searches - rotation count 1000 calls");
         printRotationCounters();
         printSearchCounters();
-
-//        printRotationCountersInRow("Random");
-//        printSearchCountersInRow("Random");
     }
-    public void alternatingFindMinFindMaxTest() {
+    public void alternatingRandomFindMinFindMaxTest() {
         populateDataStructuresWithGivenInput(baseCaseRandomInput);
         clearCounters();
         for(int i = 0; i < 1000; i++) {
@@ -368,7 +366,23 @@ public class Main {
             tr.findMax();
 
         }
-        System.out.println("Testing alternating min/max - rotation/search count 1000 calls");
+        System.out.println("Testing random alternating min/max - rotation/search count 1000 calls");
+        printRotationCounters();
+        printSearchCounters();
+    }
+    public void alternatingSortedFindMinFindMaxTest() {
+        populateDataStructuresWithGivenInput(baseCaseSortedInput);
+        clearCounters();
+        for(int i = 0; i < 1000; i++) {
+            rb.findMin();
+            rb.findMax();
+            st.findMin();
+            st.findMax();
+            tr.findMin();
+            tr.findMax();
+
+        }
+        System.out.println("Testing sorted alternating min/max - rotation/search count 1000 calls");
         printRotationCounters();
         printSearchCounters();
     }
@@ -404,7 +418,7 @@ public class Main {
             st.contains(currentElements.get(index));
             tr.contains(currentElements.get(index));
         }
-        System.out.println("Testing simulated searches and insertions - rotation count 1000 calls");
+        System.out.println("Testing simulated searches and insertions - rotation/search count 1000 calls");
         printRotationCounters();
         printSearchCounters();
 
@@ -441,9 +455,12 @@ public class Main {
         main.removeAllRandomOrderUnsortedInputTest();
 
         main.mixedAddAndRemoveTest();
+        //searchTests
         main.containsRandomTest(); //contains, random
+
         main.simulatedMixedUsageTest(); //findMin, findMax, contains, insert, random
-        main.alternatingFindMinFindMaxTest(); //findMin, findMax
+        main.alternatingRandomFindMinFindMaxTest(); //findMin, findMax random
+        //main.alternatingSortedFindMinFindMaxTest(); //findMin, findMax, random
 
     }
 }
