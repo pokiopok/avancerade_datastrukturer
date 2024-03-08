@@ -23,8 +23,8 @@ public class SplayTree<AnyType extends Comparable<? super AnyType>>
     /**
      * Construct the tree.
      */
-    private int counter;
-    private int searchCounter;
+    private int rotationCounter;
+    private int comparisonCounter;
     public SplayTree( )
     {
         nullNode = new BinaryNode<AnyType>( null );
@@ -61,6 +61,7 @@ public class SplayTree<AnyType extends Comparable<? super AnyType>>
                 newNode.right = root;
                 root.left = nullNode;
                 root = newNode;
+                comparisonCounter++;
             }
             else
             if( compareResult > 0 )
@@ -69,6 +70,7 @@ public class SplayTree<AnyType extends Comparable<? super AnyType>>
                 newNode.left = root;
                 root.right = nullNode;
                 root = newNode;
+                comparisonCounter++;
             }
             else
                 return;   // No duplicates
@@ -118,7 +120,7 @@ public class SplayTree<AnyType extends Comparable<? super AnyType>>
 
         while( ptr.left != nullNode ) {
             ptr = ptr.left;
-            searchCounter++;
+            comparisonCounter++;
         }
 
 
@@ -143,7 +145,7 @@ public class SplayTree<AnyType extends Comparable<? super AnyType>>
 
         while( ptr.right != nullNode ) {
             ptr = ptr.right;
-            searchCounter++;
+            comparisonCounter++;
         }
 
 
@@ -215,6 +217,7 @@ public class SplayTree<AnyType extends Comparable<? super AnyType>>
                 rightTreeMin.left = t;
                 rightTreeMin = t;
                 t = t.left;
+                comparisonCounter++;
             }
             else if( compareResult > 0 )
             {
@@ -226,6 +229,7 @@ public class SplayTree<AnyType extends Comparable<? super AnyType>>
                 leftTreeMax.right = t;
                 leftTreeMax = t;
                 t = t.right;
+                comparisonCounter++;
             }
             else
                 break;
@@ -250,7 +254,7 @@ public class SplayTree<AnyType extends Comparable<? super AnyType>>
         BinaryNode<AnyType> k1 = k2.left;
         k2.left = k1.right;
         k1.right = k2;
-        counter++;
+        rotationCounter++;
         return k1;
     }
 
@@ -265,7 +269,7 @@ public class SplayTree<AnyType extends Comparable<? super AnyType>>
         BinaryNode<AnyType> k2 = k1.right;
         k1.right = k2.left;
         k2.left = k1;
-        counter++;
+        rotationCounter++;
         return k2;
     }
 
@@ -294,15 +298,15 @@ public class SplayTree<AnyType extends Comparable<? super AnyType>>
     private BinaryNode<AnyType> nullNode;
     
 
-    public int getCounter(){
-        return counter;
+    public int getRotationCounter(){
+        return rotationCounter;
     }
-    public void setCounter(int i){ counter = i;}
-    public int getSearchCounter() {
-        return searchCounter;
+    public void setRotationCounter(int i){ rotationCounter = i;}
+    public int getComparisonCounter() {
+        return comparisonCounter;
     }
-    public void setSearchCounter(int i) {
-        this.searchCounter = i;
+    public void setComparisonCounter(int i) {
+        this.comparisonCounter = i;
     }
         // Test program; should print min and max and nothing else
     public static void main( String [ ] args )

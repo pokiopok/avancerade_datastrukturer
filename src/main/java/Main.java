@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 public class Main {
@@ -44,33 +43,33 @@ public class Main {
     //helpers
     private void clearCounters(){
         if(rb != null){
-            rb.setCounter(0);
-            rb.setSearchCounter(0);
+            rb.setRotationCounter(0);
+            rb.setComparisonCounter(0);
         }
         if(st != null){
-            st.setCounter(0);
-            st.setSearchCounter(0);
+            st.setRotationCounter(0);
+            st.setComparisonCounter(0);
         }
         if(tr != null){
-            tr.setCounter(0);
-            tr.setSearchCounter(0);
+            tr.setRotationCounter(0);
+            tr.setComparisonCounter(0);
         }
     }
     private void printRotationCounters(){
-        System.out.println("    RedBlack: " + this.rb.getCounter());
-        System.out.println("    SplayTree: " + this.st.getCounter());
-        System.out.println("    Treap: " + this.tr.getCounter());
+        System.out.println("    RedBlack: " + this.rb.getRotationCounter());
+        System.out.println("    SplayTree: " + this.st.getRotationCounter());
+        System.out.println("    Treap: " + this.tr.getRotationCounter());
     }
     private void printRotationCountersInRow(String dataSetDescription) {
-        System.out.printf(dataSetDescription + " " +  "%6d %6d %6d%n", rb.getCounter(), st.getCounter(), tr.getCounter());
+        System.out.printf(dataSetDescription + " " +  "%6d %6d %6d%n", rb.getRotationCounter(), st.getRotationCounter(), tr.getRotationCounter());
     }
     private void printSearchCountersInRow(String dataSetDescription) {
-        System.out.printf(dataSetDescription + " " +  "%6d %6d %6d%n", rb.getSearchCounter(), st.getSearchCounter(), tr.getSearchCounter());
+        System.out.printf(dataSetDescription + " " +  "%6d %6d %6d%n", rb.getComparisonCounter(), st.getComparisonCounter(), tr.getComparisonCounter());
     }
     private void printSearchCounters() {
-        System.out.println("    RedBlack search: " + this.rb.getSearchCounter());
-        System.out.println("    SplayTree search: " + this.st.getSearchCounter());
-        System.out.println("    Treap search: " + this.tr.getSearchCounter());
+        System.out.println("    RedBlack search: " + this.rb.getComparisonCounter());
+        System.out.println("    SplayTree search: " + this.st.getComparisonCounter());
+        System.out.println("    Treap search: " + this.tr.getComparisonCounter());
     }
 
     private void populateInputArrays(){

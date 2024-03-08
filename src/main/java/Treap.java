@@ -27,8 +27,8 @@ public class Treap<AnyType extends Comparable<? super AnyType>>
      * Construct the treap.
      */
 
-    private int counter;
-    private int searchCounter;
+    private int rotationCounter;
+    private int comparisonCounter;
     public Treap( )
     {
         nullNode = new TreapNode<>( null );
@@ -68,7 +68,7 @@ public class Treap<AnyType extends Comparable<? super AnyType>>
 
         while( ptr.left != nullNode ) {
             ptr = ptr.left;
-            searchCounter++;
+            comparisonCounter++;
         }
 
 
@@ -88,7 +88,7 @@ public class Treap<AnyType extends Comparable<? super AnyType>>
 
         while( ptr.right != nullNode ) {
             ptr = ptr.right;
-            searchCounter++;
+            comparisonCounter++;
         }
 
 
@@ -111,12 +111,12 @@ public class Treap<AnyType extends Comparable<? super AnyType>>
             
             if( compareResult < 0 ) {
                 current = current.left;
-                searchCounter++;
+                comparisonCounter++;
             }
 
             else if( compareResult > 0 ) {
                 current = current.right;
-                searchCounter++;
+                comparisonCounter++;
             }
 
             else
@@ -167,12 +167,14 @@ public class Treap<AnyType extends Comparable<? super AnyType>>
         
         if( compareResult < 0 )
         {
+            comparisonCounter++;
             t.left = insert( x, t.left );
             if( t.left.priority < t.priority )
                 t = rotateWithLeftChild( t );
         }
         else if( compareResult > 0  )
         {
+            comparisonCounter++;
             t.right = insert( x, t.right );
             if( t.right.priority < t.priority )
                 t = rotateWithRightChild( t );
@@ -194,10 +196,12 @@ public class Treap<AnyType extends Comparable<? super AnyType>>
         {
             int compareResult = x.compareTo( t.element );
             
-            if( compareResult < 0 )
-                t.left = remove( x, t.left );
-            else if( compareResult > 0 )
-                t.right = remove( x, t.right );
+            if( compareResult < 0 ){
+                comparisonCounter++;
+                t.left = remove( x, t.left );}
+            else if( compareResult > 0 ){
+                comparisonCounter++;
+                t.right = remove( x, t.right );}
             else
             {
                     // Match found
@@ -237,7 +241,7 @@ public class Treap<AnyType extends Comparable<? super AnyType>>
         TreapNode<AnyType> k1 = k2.left;
         k2.left = k1.right;
         k1.right = k2;
-        counter++;
+        rotationCounter++;
         return k1;
     }
 
@@ -249,7 +253,7 @@ public class Treap<AnyType extends Comparable<? super AnyType>>
         TreapNode<AnyType> k2 = k1.right;
         k1.right = k2.left;
         k2.left = k1;
-        counter++;
+        rotationCounter++;
         return k2;
     }
 
@@ -281,15 +285,15 @@ public class Treap<AnyType extends Comparable<? super AnyType>>
     private TreapNode<AnyType> root;
     private TreapNode<AnyType> nullNode;
 
-    public int getCounter(){
-        return counter;
+    public int getRotationCounter(){
+        return rotationCounter;
     }
-    public void setCounter(int i){ counter = i;}
-    public int getSearchCounter() {
-        return searchCounter;
+    public void setRotationCounter(int i){ rotationCounter = i;}
+    public int getComparisonCounter() {
+        return comparisonCounter;
     }
-    public void setSearchCounter(int i) {
-        this.searchCounter = i;
+    public void setComparisonCounter(int i) {
+        this.comparisonCounter = i;
     }
 
         // Test program

@@ -26,8 +26,8 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
      * Construct the tree.
      */
 
-    int counter;
-    private int searchCounter;
+    int rotationCounter;
+    private int comparisonCounter;
     public RedBlackTree( )
     {
         nullNode = new RedBlackNode<>( null );
@@ -236,7 +236,7 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
 
         while( itr.left != nullNode ) {
             itr = itr.left;
-            searchCounter++;
+            comparisonCounter++;
         }
 
 
@@ -256,7 +256,7 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
 
         while( itr.right != nullNode ) {
             itr = itr.right;
-            searchCounter++;
+            comparisonCounter++;
         }
 
 
@@ -277,12 +277,12 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
         {
             if( x.compareTo( current.element ) < 0 ) {
                 current = current.left;
-                searchCounter++;
+                comparisonCounter++;
             }
 
             else if( x.compareTo( current.element ) > 0 ) {
                 current = current.right;
-                searchCounter++;
+                comparisonCounter++;
             }
 
             else if( current != nullNode )
@@ -386,7 +386,7 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
         RedBlackNode<AnyType> k1 = k2.left;
         k2.left = k1.right;
         k1.right = k2;
-        counter++;
+        rotationCounter++;
         return k1;
     }
 
@@ -398,7 +398,7 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
         RedBlackNode<AnyType> k2 = k1.right;
         k1.right = k2.left;
         k2.left = k1;
-        counter++;
+        rotationCounter++;
         return k2;
     }
 
@@ -436,15 +436,15 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
     private RedBlackNode<AnyType> grand;
     private RedBlackNode<AnyType> great;
 
-    public int getCounter() {
-        return counter;
+    public int getRotationCounter() {
+        return rotationCounter;
     }
-    public void setCounter(int i){ counter = i;}
-    public int getSearchCounter(){
-        return searchCounter;
+    public void setRotationCounter(int i){ rotationCounter = i;}
+    public int getComparisonCounter(){
+        return comparisonCounter;
     }
-    public void setSearchCounter(int i) {
-        this.searchCounter = i;
+    public void setComparisonCounter(int i) {
+        this.comparisonCounter = i;
     }
 
     // Test program
