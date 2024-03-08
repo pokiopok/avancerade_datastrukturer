@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class Main {
@@ -32,7 +33,7 @@ public class Main {
     ArrayList<Integer> unsortedExtremeValuesBigInput = new ArrayList<>();
     ArrayList<Integer> unsortedBigDoubleValuesInput = new ArrayList<>();
 
-        //Base case input array (850 elements, unsorted)
+        //Base case input array (1000 elements, unsorted)
     ArrayList<Integer> baseCaseRandomInput = new ArrayList<>();
 
     public Main(){
@@ -64,8 +65,9 @@ public class Main {
         System.out.println("    SplayTree search: " + this.st.getSearchCounter());
         System.out.println("    Treap search: " + this.tr.getSearchCounter());
     }
+
     private void populateInputArrays(){
-        for(int i=0; i<850; i++){
+        for(int i=0; i<1000; i++){
             baseCaseRandomInput.add(random.nextInt());
         }
 
@@ -219,10 +221,9 @@ public class Main {
             tr.remove(currentElements.get(index));
             currentElements.remove(index);
         }while(currentElements.size()>0);
-        System.out.println("Remove all unsorted- rotation count - 850 elements");
+        System.out.println("Remove all unsorted- rotation count - 1000 elements");
         printRotationCounters();
     }
-
     public void removeAllinOrderTest(){
         populateDataStructuresWithGivenInput(baseCaseRandomInput);
         clearCounters();
@@ -235,7 +236,71 @@ public class Main {
             st.remove(i);
             tr.remove(i);
         }
-        System.out.println("Remove all sorted- rotation count - 850 elements");
+        System.out.println("Remove all sorted- rotation count - 1000 elements");
+        printRotationCounters();
+    }
+
+    public void removeAllRandomOrderSortedInputTest(){
+        //copy and trim of input to keep track of current elements
+        List<Integer> currentElementsList = sortedBigInput.subList(0,1000);
+        currentElements = new ArrayList<>(currentElementsList);
+        populateDataStructuresWithGivenInput(currentElements);
+        clearCounters();
+        do{
+            int index = random.nextInt(currentElements.size());
+//            rb.remove(currentElements.get(index));
+            st.remove(currentElements.get(index));
+            tr.remove(currentElements.get(index));
+            currentElements.remove(index);
+        }while(currentElements.size()>0);
+        System.out.println("Remove all unsorted order - sorted input - rotation count - 1000 elements");
+        printRotationCounters();
+    }
+    public void removeAllinOrderUnsortedInputTest(){
+        //copy of input to keep track of current elements
+        List<Integer> currentElementsList = unsortedBigSingleValuesInput.subList(0,1000);
+        currentElements = new ArrayList<>(currentElementsList);
+        populateDataStructuresWithGivenInput(currentElements);
+        clearCounters();
+        //sort in order to remove in order
+        Collections.sort(currentElements);
+        for(Integer i : currentElements){
+//            rb.remove(i);
+            st.remove(i);
+            tr.remove(i);
+        }
+        System.out.println("Remove all sorted order - unsorted input - rotation count - 1000 elements");
+        printRotationCounters();
+    }
+    public void removeAllInOrderSortedInputTest(){
+        //copy and trim of input to keep track of current elements
+        List<Integer> currentElementsList = sortedBigInput.subList(0,1000);
+        currentElements = new ArrayList<>(currentElementsList);
+        populateDataStructuresWithGivenInput(currentElements);
+        clearCounters();
+        Collections.sort(currentElements);
+        for(Integer i : currentElements){
+//            rb.remove(i);
+            st.remove(i);
+            tr.remove(i);
+        }
+        System.out.println("Remove all sorted order - sorted input - rotation count - 1000 elements");
+        printRotationCounters();
+    }
+    public void removeAllRandomOrderUnsortedInputTest(){
+        //copy and trip of input to keep track of current elements
+        List<Integer> currentElementsList = unsortedBigSingleValuesInput.subList(0,1000);
+        currentElements = new ArrayList<>(currentElementsList);
+        populateDataStructuresWithGivenInput(currentElements);
+        clearCounters();
+        do{
+            int index = random.nextInt(currentElements.size());
+//            rb.remove(currentElements.get(index));
+            st.remove(currentElements.get(index));
+            tr.remove(currentElements.get(index));
+            currentElements.remove(index);
+        }while(currentElements.size()>0);
+        System.out.println("Remove all random order - unsorted input - rotation count - 1000 elements");
         printRotationCounters();
     }
 
@@ -246,7 +311,7 @@ public class Main {
         currentElements = new ArrayList<>();
         Integer temp;
 
-        for(int i=0; i<=850;){
+        for(int i=0; i<=1000;){
             for(int j=0; j<6;j++){
                 temp = random.nextInt();
                 currentElements.add(temp);
@@ -264,7 +329,7 @@ public class Main {
                 i++;
             }
         }
-        System.out.println("Alternating add and then remove, - rotation count - 850 method calls");
+        System.out.println("Alternating add and then remove, - rotation count - 1000 method calls");
         printRotationCounters();
     }
     //Testar contains för random data
@@ -341,9 +406,14 @@ public class Main {
         //base case input, used for pattern tests
         main.baseCaseRandomTest();
 
-        //user pattern tests
+        //remove tests
         main.removeAllRandomOrderTest();
         main.removeAllinOrderTest();
+        main.removeAllRandomOrderSortedInputTest();
+        main.removeAllinOrderUnsortedInputTest();
+        main.removeAllInOrderSortedInputTest();
+        main.removeAllRandomOrderUnsortedInputTest();
+
         main.mixedAddAndRemoveTest();
         main.containsRandomTest(); //contains, random
         main.simulatedMixedUsageTest(); //findMin, findMax, contains, insert, random
