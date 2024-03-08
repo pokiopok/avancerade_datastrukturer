@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class Main {
@@ -25,6 +26,8 @@ public class Main {
         //Big input arrays (12345 elements each)
     ArrayList<Integer> sortedBigInput = new ArrayList<>();
     ArrayList<Integer> reverseSortedBigInput = new ArrayList<>();
+    ArrayList<Integer> almostSortedMinusPLus50BigInput = new ArrayList<>();
+    ArrayList<Integer> almostSortedRandomMiddlesBigInput = new ArrayList<>();
     ArrayList<Integer> unsortedBigSingleValuesInput = new ArrayList<>();
     ArrayList<Integer> unsortedExtremeValuesBigInput = new ArrayList<>();
     ArrayList<Integer> unsortedBigDoubleValuesInput = new ArrayList<>();
@@ -72,6 +75,18 @@ public class Main {
                 unsortedExtremeValuesBigInput.add(min-difference);
             } else {
                 unsortedExtremeValuesBigInput.add(max-difference);
+            }
+        }
+
+        for(int i=0; i<12345; i++){
+            Integer difference = random.nextInt(100);
+            almostSortedMinusPLus50BigInput.add(i+difference);
+        }
+        for(int i=0; i<12345; i++){
+            if(i%20 == 0){
+                almostSortedRandomMiddlesBigInput.add(random.nextInt());
+            } else {
+                almostSortedRandomMiddlesBigInput.add(i);
             }
         }
 
@@ -156,6 +171,16 @@ public class Main {
         System.out.println("Reverse sorted values input, big - rotation count");
         printRotationCounters();
     }
+    public void almostSortedRandomMiddlesBigTest(){
+        populateDataStructuresWithGivenInput(almostSortedRandomMiddlesBigInput);
+        System.out.println("Almost sorted random middle values input, big - rotation count");
+        printRotationCounters();
+    }
+    public void almostSortedMinusPLus50BigTest(){
+        populateDataStructuresWithGivenInput(almostSortedMinusPLus50BigInput);
+        System.out.println("Almost sorted +-50 values input, big - rotation count");
+        printRotationCounters();
+    }
     public void unsortedBigSingleValuesTest(){
         populateDataStructuresWithGivenInput(unsortedBigSingleValuesInput);
         System.out.println("Unsorted single values input, big - rotation count");
@@ -174,7 +199,7 @@ public class Main {
     }
 
     //user pattern tests
-    public void firstAddThenRemoveTest(){
+    public void removeAllRandomOrderTest(){
         populateDataStructuresWithGivenInput(baseCaseRandomInput);
         clearCounters();
         //copy of input to keep track of current elements
@@ -186,7 +211,23 @@ public class Main {
             tr.remove(currentElements.get(index));
             currentElements.remove(index);
         }while(currentElements.size()>0);
-        System.out.println("Remove all - rotation count - 850 elements");
+        System.out.println("Remove all unsorted- rotation count - 850 elements");
+        printRotationCounters();
+    }
+
+    public void removeAllinOrderTest(){
+        populateDataStructuresWithGivenInput(baseCaseRandomInput);
+        clearCounters();
+        //copy of input to keep track of current elements
+        currentElements = new ArrayList<>(baseCaseRandomInput);
+        //sort in order to remove in order
+        Collections.sort(currentElements);
+        for(Integer i : currentElements){
+//            rb.remove(i);
+            st.remove(i);
+            tr.remove(i);
+        }
+        System.out.println("Remove all sorted- rotation count - 850 elements");
         printRotationCounters();
     }
 
@@ -220,7 +261,6 @@ public class Main {
     }
     //Testar contains för random data
     public void containsRandomTest() {
-
         populateDataStructuresWithGivenInput(baseCaseRandomInput);
         clearCounters();
         for(int i = 0; i < 1000; i++) {
@@ -282,6 +322,8 @@ public class Main {
         //big input
         main.sortedBigTest();
         main.reverseSortedBigTest();
+        main.almostSortedRandomMiddlesBigTest();
+        main.almostSortedMinusPLus50BigTest();
         main.unsortedBigSingleValuesTest();
         main.unsortedBigDoubleValuesTest();
         main.unsortedExtremeValuesTest();
@@ -290,7 +332,8 @@ public class Main {
         main.baseCaseRandomTest();
 
         //user pattern tests
-        main.firstAddThenRemoveTest();
+        main.removeAllRandomOrderTest();
+        main.removeAllinOrderTest();
         main.mixedAddAndRemoveTest();
         main.containsRandomTest(); //contains, random
         main.simulatedMixedUsageTest(); //findMin, findMax, contains, insert, random
