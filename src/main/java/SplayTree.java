@@ -24,6 +24,7 @@ public class SplayTree<AnyType extends Comparable<? super AnyType>>
      * Construct the tree.
      */
     private int counter;
+    private int searchCounter;
     public SplayTree( )
     {
         nullNode = new BinaryNode<AnyType>( null );
@@ -115,8 +116,11 @@ public class SplayTree<AnyType extends Comparable<? super AnyType>>
 
         BinaryNode<AnyType> ptr = root;
 
-        while( ptr.left != nullNode )
+        while( ptr.left != nullNode ) {
             ptr = ptr.left;
+            searchCounter++;
+        }
+
 
         root = splay( ptr.element, root );
         return ptr.element;
@@ -137,8 +141,11 @@ public class SplayTree<AnyType extends Comparable<? super AnyType>>
 
         BinaryNode<AnyType> ptr = root;
 
-        while( ptr.right != nullNode )
+        while( ptr.right != nullNode ) {
             ptr = ptr.right;
+            searchCounter++;
+        }
+
 
         root = splay( ptr.element, root );
         return ptr.element;
@@ -291,6 +298,12 @@ public class SplayTree<AnyType extends Comparable<? super AnyType>>
         return counter;
     }
     public void setCounter(int i){ counter = i;}
+    public int getSearchCounter() {
+        return searchCounter;
+    }
+    public void setSearchCounter(int i) {
+        this.searchCounter = i;
+    }
         // Test program; should print min and max and nothing else
     public static void main( String [ ] args )
     {

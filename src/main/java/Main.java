@@ -43,18 +43,26 @@ public class Main {
     private void clearCounters(){
         if(rb != null){
             rb.setCounter(0);
+            rb.setSearchCounter(0);
         }
         if(st != null){
             st.setCounter(0);
+            st.setSearchCounter(0);
         }
         if(tr != null){
             tr.setCounter(0);
+            tr.setSearchCounter(0);
         }
     }
     private void printRotationCounters(){
         System.out.println("    RedBlack: " + this.rb.getCounter());
         System.out.println("    SplayTree: " + this.st.getCounter());
         System.out.println("    Treap: " + this.tr.getCounter());
+    }
+    private void printSearchCounters() {
+        System.out.println("    RedBlack search: " + this.rb.getSearchCounter());
+        System.out.println("    SplayTree search: " + this.st.getSearchCounter());
+        System.out.println("    Treap search: " + this.tr.getSearchCounter());
     }
     private void populateInputArrays(){
         for(int i=0; i<850; i++){
@@ -270,8 +278,9 @@ public class Main {
             st.contains(baseCaseRandomInput.get(index));
             tr.contains(baseCaseRandomInput.get(index));
         }
-        System.out.println("Testing contains method for random searches - rotation count 100 calls");
+        System.out.println("Testing contains method for random searches - rotation count 1000 calls");
         printRotationCounters();
+        printSearchCounters();
     }
     //behöver vi lägga till en searchdepth för att visa på styrkorna/svagheterna?
     //osäker på hur denna kan se ut
@@ -306,6 +315,7 @@ public class Main {
         }
         System.out.println("Testing simulated searches and insertions - rotation count 1000 calls");
         printRotationCounters();
+        printSearchCounters();
 
     }
 

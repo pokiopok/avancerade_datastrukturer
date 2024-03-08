@@ -28,6 +28,7 @@ public class Treap<AnyType extends Comparable<? super AnyType>>
      */
 
     private int counter;
+    private int searchCounter;
     public Treap( )
     {
         nullNode = new TreapNode<>( null );
@@ -65,8 +66,11 @@ public class Treap<AnyType extends Comparable<? super AnyType>>
 
         TreapNode<AnyType> ptr = root;
 
-        while( ptr.left != nullNode )
+        while( ptr.left != nullNode ) {
             ptr = ptr.left;
+            searchCounter++;
+        }
+
 
         return ptr.element;
     }
@@ -82,8 +86,11 @@ public class Treap<AnyType extends Comparable<? super AnyType>>
 
         TreapNode<AnyType> ptr = root;
 
-        while( ptr.right != nullNode )
+        while( ptr.right != nullNode ) {
             ptr = ptr.right;
+            searchCounter++;
+        }
+
 
         return ptr.element;
     }
@@ -102,10 +109,16 @@ public class Treap<AnyType extends Comparable<? super AnyType>>
         {
             int compareResult = x.compareTo( current.element );
             
-            if( compareResult < 0 )
+            if( compareResult < 0 ) {
                 current = current.left;
-            else if( compareResult > 0 ) 
+                searchCounter++;
+            }
+
+            else if( compareResult > 0 ) {
                 current = current.right;
+                searchCounter++;
+            }
+
             else
                 return current != nullNode;
         }
@@ -272,6 +285,12 @@ public class Treap<AnyType extends Comparable<? super AnyType>>
         return counter;
     }
     public void setCounter(int i){ counter = i;}
+    public int getSearchCounter() {
+        return searchCounter;
+    }
+    public void setSearchCounter(int i) {
+        this.searchCounter = i;
+    }
 
         // Test program
     public static void main( String [ ] args )

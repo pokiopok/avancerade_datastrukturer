@@ -27,6 +27,7 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
      */
 
     int counter;
+    private int searchCounter;
     public RedBlackTree( )
     {
         nullNode = new RedBlackNode<>( null );
@@ -233,8 +234,11 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
 
         RedBlackNode<AnyType> itr = header.right;
 
-        while( itr.left != nullNode )
+        while( itr.left != nullNode ) {
             itr = itr.left;
+            searchCounter++;
+        }
+
 
         return itr.element;
     }
@@ -250,8 +254,11 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
 
         RedBlackNode<AnyType> itr = header.right;
 
-        while( itr.right != nullNode )
+        while( itr.right != nullNode ) {
             itr = itr.right;
+            searchCounter++;
+        }
+
 
         return itr.element;
     }
@@ -268,10 +275,16 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
 
         for( ; ; )
         {
-            if( x.compareTo( current.element ) < 0 )
+            if( x.compareTo( current.element ) < 0 ) {
                 current = current.left;
-            else if( x.compareTo( current.element ) > 0 ) 
+                searchCounter++;
+            }
+
+            else if( x.compareTo( current.element ) > 0 ) {
                 current = current.right;
+                searchCounter++;
+            }
+
             else if( current != nullNode )
                 return true;
             else
@@ -427,6 +440,12 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
         return counter;
     }
     public void setCounter(int i){ counter = i;}
+    public int getSearchCounter(){
+        return searchCounter;
+    }
+    public void setSearchCounter(int i) {
+        this.searchCounter = i;
+    }
 
     // Test program
     public static void main( String [ ] args )
