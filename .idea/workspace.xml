@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a5b2d58-3eed-46e4-b95c-c8fa0a3b3cbc" name="Changes" comment="commit före en pull">
+    <list default="true" id="4a5b2d58-3eed-46e4-b95c-c8fa0a3b3cbc" name="Changes" comment="commit findMin/findmax">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/RedBlackTree$RedBlackNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/RedBlackTree$RedBlackNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/RedBlackTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/RedBlackTree.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SplayTree$BinaryNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SplayTree$BinaryNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SplayTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SplayTree.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Treap$TreapNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Treap$TreapNode.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Treap.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Treap.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +133,43 @@
       <option name="presentableId" value="LOCAL−00003" />
       <updated>1709817319577</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL−00004" summary="commit före en pull">
+      <created>1709833942922</created>
+      <option name="number" value="LOCAL−00004" />
+      <option name="presentableId" value="LOCAL−00004" />
+      <updated>1709833942922</updated>
+    </task>
+    <task id="LOCAL−00005" summary="lagt till test för searches">
+      <created>1709839209339</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1709839209339</updated>
+    </task>
+    <task id="LOCAL−00006" summary="refactoring">
+      <created>1709843421154</created>
+      <option name="number" value="LOCAL−00006" />
+      <option name="presentableId" value="LOCAL−00006" />
+      <updated>1709843421154</updated>
+    </task>
+    <task id="LOCAL−00007" summary="commit">
+      <created>1709885522211</created>
+      <option name="number" value="LOCAL−00007" />
+      <option name="presentableId" value="LOCAL−00007" />
+      <updated>1709885522211</updated>
+    </task>
+    <task id="LOCAL−00008" summary="commit efter att ha lagt till searchcounters i findmin, findmax och contains">
+      <created>1709888176691</created>
+      <option name="number" value="LOCAL−00008" />
+      <option name="presentableId" value="LOCAL−00008" />
+      <updated>1709888176691</updated>
+    </task>
+    <task id="LOCAL−00009" summary="commit findMin/findmax">
+      <created>1709893286605</created>
+      <option name="number" value="LOCAL−00009" />
+      <option name="presentableId" value="LOCAL−00009" />
+      <updated>1709893286605</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -145,6 +186,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Uppdaterade basic testcases för SplayTree" />
     <MESSAGE value="commit före en pull" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit före en pull" />
+    <MESSAGE value="lagt till test för searches" />
+    <MESSAGE value="refactoring" />
+    <MESSAGE value="commit" />
+    <MESSAGE value="commit efter att ha lagt till searchcounters i findmin, findmax och contains" />
+    <MESSAGE value="commit findMin/findmax" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit findMin/findmax" />
   </component>
 </project>

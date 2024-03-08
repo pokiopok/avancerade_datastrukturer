@@ -61,6 +61,12 @@ public class Main {
         System.out.println("    SplayTree: " + this.st.getCounter());
         System.out.println("    Treap: " + this.tr.getCounter());
     }
+    private void printRotationCountersInRow(String dataSetDescription) {
+        System.out.printf(dataSetDescription + " " +  "%6d %6d %6d%n", rb.getCounter(), st.getCounter(), tr.getCounter());
+    }
+    private void printSearchCountersInRow(String dataSetDescription) {
+        System.out.printf(dataSetDescription + " " +  "%6d %6d %6d%n", rb.getSearchCounter(), st.getSearchCounter(), tr.getSearchCounter());
+    }
     private void printSearchCounters() {
         System.out.println("    RedBlack search: " + this.rb.getSearchCounter());
         System.out.println("    SplayTree search: " + this.st.getSearchCounter());
@@ -352,6 +358,39 @@ public class Main {
         printRotationCounters();
         printSearchCounters();
     }
+    public void alternatingRandomFindMinFindMaxTest() {
+        populateDataStructuresWithGivenInput(baseCaseRandomInput);
+        clearCounters();
+        for(int i = 0; i < 1000; i++) {
+            rb.findMin();
+            rb.findMax();
+            st.findMin();
+            st.findMax();
+            tr.findMin();
+            tr.findMax();
+
+        }
+        System.out.println("Testing random alternating min/max - rotation/search count 1000 calls");
+        printRotationCounters();
+        printSearchCounters();
+    }
+    public void alternatingSortedFindMinFindMaxTest() {
+        populateDataStructuresWithGivenInput(baseCaseSortedInput);
+        clearCounters();
+        for(int i = 0; i < 1000; i++) {
+            rb.findMin();
+            rb.findMax();
+            st.findMin();
+            st.findMax();
+            tr.findMin();
+            tr.findMax();
+
+        }
+        System.out.println("Testing sorted alternating min/max - rotation/search count 1000 calls");
+        printRotationCounters();
+        printSearchCounters();
+    }
+
     //behöver vi lägga till en searchdepth för att visa på styrkorna/svagheterna?
     //osäker på hur denna kan se ut
     public void simulatedMixedUsageTest() {
@@ -383,7 +422,7 @@ public class Main {
             st.contains(currentElements.get(index));
             tr.contains(currentElements.get(index));
         }
-        System.out.println("Testing simulated searches and insertions - rotation count 1000 calls");
+        System.out.println("Testing simulated searches and insertions - rotation/search count 1000 calls");
         printRotationCounters();
         printSearchCounters();
 
@@ -421,9 +460,12 @@ public class Main {
         main.removeAllRandomOrderUnsortedInputTest();
 
         main.mixedAddAndRemoveTest();
+        //searchTests
         main.containsRandomTest(); //contains, random
-        main.simulatedMixedUsageTest(); //findMin, findMax, contains, insert, random
 
+        main.simulatedMixedUsageTest(); //findMin, findMax, contains, insert, random
+        main.alternatingRandomFindMinFindMaxTest(); //findMin, findMax random
+        //main.alternatingSortedFindMinFindMaxTest(); //findMin, findMax, random
 
     }
 }
