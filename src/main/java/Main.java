@@ -71,7 +71,7 @@ public class Main {
         for(int i=0; i<1000; i++){
             baseCaseRandomInput.add(random.nextInt());
         }
-        for(int i=-2; i<12345-2; i++){
+        for(int i=0; i<1000; i++){
             baseCaseSortedInput.add(i);
         }
 
@@ -209,6 +209,11 @@ public class Main {
     public void baseCaseRandomTest(){
         populateDataStructuresWithGivenInput(baseCaseRandomInput);
         System.out.println("Base case with random input - rotation count");
+        printRotationCounters();
+    }
+    public void baseCaseSortedTest(){
+        populateDataStructuresWithGivenInput(baseCaseSortedInput);
+        System.out.println("Base case with sorted input - rotation count");
         printRotationCounters();
     }
 
@@ -405,6 +410,7 @@ public class Main {
 
         //base case input, used for pattern tests
         main.baseCaseRandomTest();
+        main.baseCaseSortedTest();
 
         //remove tests
         main.removeAllRandomOrderTest();
