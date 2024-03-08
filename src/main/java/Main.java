@@ -35,6 +35,7 @@ public class Main {
 
         //Base case input array (1000 elements, unsorted)
     ArrayList<Integer> baseCaseRandomInput = new ArrayList<>();
+    ArrayList<Integer> baseCaseSortedInput = new ArrayList<>();
 
     public Main(){
         populateInputArrays();
@@ -69,6 +70,9 @@ public class Main {
     private void populateInputArrays(){
         for(int i=0; i<1000; i++){
             baseCaseRandomInput.add(random.nextInt());
+        }
+        for(int i=-2; i<12345-2; i++){
+            baseCaseSortedInput.add(i);
         }
 
         for(int i=-2; i<12345-2; i++){
@@ -241,9 +245,8 @@ public class Main {
     }
 
     public void removeAllRandomOrderSortedInputTest(){
-        //copy and trim of input to keep track of current elements
-        List<Integer> currentElementsList = sortedBigInput.subList(0,1000);
-        currentElements = new ArrayList<>(currentElementsList);
+        //copy of input to keep track of current elements
+        currentElements = new ArrayList<>(baseCaseSortedInput);
         populateDataStructuresWithGivenInput(currentElements);
         clearCounters();
         do{
@@ -258,8 +261,7 @@ public class Main {
     }
     public void removeAllinOrderUnsortedInputTest(){
         //copy of input to keep track of current elements
-        List<Integer> currentElementsList = unsortedBigSingleValuesInput.subList(0,1000);
-        currentElements = new ArrayList<>(currentElementsList);
+        currentElements = new ArrayList<>(baseCaseRandomInput);
         populateDataStructuresWithGivenInput(currentElements);
         clearCounters();
         //sort in order to remove in order
@@ -273,9 +275,8 @@ public class Main {
         printRotationCounters();
     }
     public void removeAllInOrderSortedInputTest(){
-        //copy and trim of input to keep track of current elements
-        List<Integer> currentElementsList = sortedBigInput.subList(0,1000);
-        currentElements = new ArrayList<>(currentElementsList);
+        //copy of input to keep track of current elements
+        currentElements = new ArrayList<>(baseCaseSortedInput);
         populateDataStructuresWithGivenInput(currentElements);
         clearCounters();
         Collections.sort(currentElements);
@@ -288,9 +289,8 @@ public class Main {
         printRotationCounters();
     }
     public void removeAllRandomOrderUnsortedInputTest(){
-        //copy and trip of input to keep track of current elements
-        List<Integer> currentElementsList = unsortedBigSingleValuesInput.subList(0,1000);
-        currentElements = new ArrayList<>(currentElementsList);
+        //copy of input to keep track of current elements
+        currentElements = new ArrayList<>(baseCaseRandomInput);
         populateDataStructuresWithGivenInput(currentElements);
         clearCounters();
         do{
